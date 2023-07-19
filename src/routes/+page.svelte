@@ -1,7 +1,15 @@
 <script lang="ts">
-	import Button, { Label } from '@smui/button';
+	import Button from '@smui/button';
 	import Card from '@smui/card';
 	import Banner, { Label as BannerLabel } from '@smui/banner';
+	import type { PageData } from './$types';
+	import { onMount } from 'svelte';
+
+	export let data: PageData;
+
+	onMount(() => {
+		console.log(data);
+	});
 
 	let bannerOpen = true;
 </script>
@@ -14,7 +22,8 @@
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 <div>
 	<Card padded>
-		<p>this is a great button</p>
-		<Button><Label>test</Label></Button>
+		{#each data.list.results as item}
+			<h2>{item.name}</h2>
+		{/each}
 	</Card>
 </div>
